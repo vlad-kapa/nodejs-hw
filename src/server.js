@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 
 import 'dotenv/config';
-import { connectDatabase } from './db/connectMongoDB.js';
+import { connectMongoDb } from './db/connectMongoDB.js';
 import { logger } from './middleware/logger.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
 import { errorHandler } from './middleware/errorHandler.js';
@@ -21,7 +21,7 @@ app.use(notFoundHandler);
 app.use(errors());
 app.use(errorHandler);
 
-await connectDatabase();
+await connectMongoDb();
 
 const port = Number(process.env.PORT) || 3000;
 app.listen(port, () => {
